@@ -1,0 +1,19 @@
+1. the differences between
+| HTML                         | JSX                    |
+| ---------------------------- | ---------------------- |
+| Static                       | Dynamic                |
+| class                        | className              |
+| style="..."                  | style={{}}             |
+| Can return multiple elements | Must return one parent |
+| No JS inside                 | JS inside {}           |
+more example:
+html:
+<h1>Hello</h1>
+<p>World</p>
+jsx:
+return (
+  <>
+    <h1>Hello</h1>
+    <p>World</p>
+  </>
+)

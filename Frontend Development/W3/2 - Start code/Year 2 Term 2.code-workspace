@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../Year 2 Term 1"
+		},
+		{
+			"path": "../../../../../nextgen"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "problem-2"
+	}
+}
