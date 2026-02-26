@@ -1,0 +1,51 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage:"
+    echo " $0 <source_dir> <backup_dir>"
+    echo " $0 -s <source_dir> -b <backup_dir>"
+    echo " $0 -b <backup_dir> -s <source_dir>"
+    echo "Examples:"
+    echo " ./$0 ../data/ ../backups/"
+    echo " ./$0 -s ../data/ -b ../backups/"
+    echo " ./$0 -b ../backups/ -s ../data/"
+    echo "Notes:"
+    echo " - <source_dir> must exist and be a directory"
+    echo " - <backup_dir> will be created if it does not exist"
+    echo " - The script copies ALL regular files recursively and preserves subfolders."
+    exit 1
+}
+
+if [[ $# -eq 2 ]]; then
+    SOURCE="$1"
+    BACKUP="$2"
+elif [[ $# -eq 4 ]]; then
+    if [[ $1 == "-s" && $3 == "-b" ]]; then
+        SOURCE="$2"
+        BACKUP="$4"
+    elif [[ $1 == "-b" && $3 == "-s" ]]; then
+        BACKUP="$2"
+        SOURCE="$4"
+    else
+        usage
+    fi
+else
+    usage
+fi
+
+if [[ ! -d "$SOURCE" ]]; then
+    echo "ERROR: Source directory '$SOURCE' does not exist!"
+    exit 1
+fi
+
+if [[ ! -d "$BACKUP" ]]; then
+    mkdir -p "$BACKUP"
+fi
+
+cp -r "$SOURCE"/* "$BACKUP"
+
+echo "Backup completed successfully!"
+echo "Files copied from '$SOURCE' to '$BACKUP'"
+
+./count_files.sh "$SOURCE"
+./count_files.sh "$BACKUP"
