@@ -1,13 +1,28 @@
-export default function StuffForm() {
+import { useState } from "react";
+
+export default function StuffForm({ stuffs, setStuffs }) {
+
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+
+  function addStuff(e) {
+    e.preventDefault();
+    if (!name.trim() || !price) {
+      alert("Please enter a valid name and price.");
+      return;
+    }
+    setStuffs([...stuffs, { name, price }]);
+  }
+
   return (
     <form className="stuff-form">
       <p>Stuff name</p>
-      <input type="search" placeholder="Banana" />
+      <input type="search" placeholder="Banana" onChange={(e) => setName(e.target.value)} />
 
       <p>Stuff price</p>
-      <input type="search" placeholder="15" />
+      <input type="search" placeholder="15" onChange={(e) => setPrice(e.target.value)} />
 
-      <button>Add Stuff</button>
+      <button onClick={addStuff}>Add Stuff</button>
     </form>
   );
 }

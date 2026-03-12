@@ -70,7 +70,7 @@ header h1 {
   text-align: center;
   cursor: pointer;
 }
-.order-button .disable {
+.order-button.disable {
   background-color: var(--grey-color);
 }
 
@@ -109,4 +109,8 @@ header h1 {
 
 .checkout-button:hover {
   background: var(--main-color-light);
+}
+
+.checkout-button.disable {
+  background-color: var(--grey-color);
 }

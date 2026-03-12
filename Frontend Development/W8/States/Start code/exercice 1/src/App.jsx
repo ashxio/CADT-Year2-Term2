@@ -1,14 +1,24 @@
 import React from "react";
 
 export default function App() {
+
+  const [score, setScore] = React.useState("");
+
   const getScoreBarStyle = () => {
-    // 1- Compute width
-    const scoreWidth = `40%`;
+    // 1 - Compute width
+    const scoreWidth = score > 10 ? "100%" : `${score * 10}%`;
 
-    // 2- Compute color (optional)
-    let scoreColor = `#f3bc47`;
+    // 2 - Compute color
+    let scoreColor =
+      score > 7
+        ? "#4caf50"
+        : score > 4
+        ? "#8cdf65"
+        : score > 2
+        ? "#f3bc47"
+        : "#f44336";
 
-    // 3 - Return the style object
+    // 3 - Return style object
     return {
       width: scoreWidth,
       backgroundColor: scoreColor,
@@ -21,7 +31,13 @@ export default function App() {
         <h1>My Score in React</h1>
 
         <small>Enter a score (0 to 10): </small>
-        <input type="number" min="0" max="10"></input>
+        <input
+          type="number"
+          min="0"
+          max="10"
+          value={score}
+          onChange={(e) => setScore(e.target.value)}
+        />
 
         <div className="score-bar">
           <div className="score-bar-value" style={getScoreBarStyle()}></div>

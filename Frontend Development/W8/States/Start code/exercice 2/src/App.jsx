@@ -27,11 +27,11 @@ export default function App() {
         <h1>My Stuff</h1>
       </header>
 
-      <StuffForm></StuffForm>
+      <StuffForm stuffs={stuffs} setStuffs={setStuffs} />
 
       <div className="stuff-list">
         {stuffs.map((stuff, index) => (
-          <StuffCard key={index} name={stuff.name} price={stuff.price} />
+          <StuffCard key={index} name={stuff.name} price={stuff.price}/>
         ))}
       </div>
     </>
